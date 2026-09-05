@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Wavelength — Voice Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- Header: app identity + live status -->
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <h1>Wavelength</h1>
+      </div>
+
+      <div class="status" id="statusPill" data-state="idle">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span class="status-text" id="statusText">Idle</span>
+      </div>
+    </header>
+
+    <!-- Conversation log -->
+    <main class="chat" id="chat" aria-live="polite">
+      <div class="chat-empty" id="chatEmpty">
+        <p>Press the mic and say something.</p>
+        <p class="chat-empty-sub">Try "what time is it", "tell me a joke", or "what can you do".</p>
+      </div>
+      <!-- Messages are appended here by script.js -->
+    </main>
+
+    <!-- Inline warning banner for unsupported browsers / permission issues -->
+    <div class="banner" id="banner" role="alert" hidden></div>
+
+    <!-- Controls -->
+    <footer class="controls">
+      <button class="clear-btn" id="clearBtn" type="button" title="Clear conversation">
+        Clear
+      </button>
+
+      <div class="mic-wrap">
+        <div class="mic-rings" id="micRings" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <button class="mic-btn" id="micBtn" type="button" aria-pressed="false" aria-label="Start listening">
+          <!-- Microphone icon -->
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 14.5a3.5 3.5 0 0 0 3.5-3.5V6a3.5 3.5 0 0 0-7 0v5a3.5 3.5 0 0 0 3.5 3.5Z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M6 11a6 6 0 0 0 12 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M12 17v3.2M9 20.2h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="hint" id="hint">Tap to speak</div>
+    </footer>
+
+  </div>
+
+  <!-- Template for a single chat message (cloned in JS) -->
+  <template id="messageTemplate">
+    <div class="message">
+      <span class="message-label"></span>
+      <p class="message-bubble"></p>
+    </div>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
